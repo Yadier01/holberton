@@ -49,6 +49,38 @@
           </div>
         </section>
       </div>
+
+      <section
+        class="h-screen text-white flex flex-col justify-center items-center"
+      >
+        <img src="" alt="a cute dog.jpg" id="new-dog" class="mb-8" />
+        <div class="flex justify-center items-center w-full gap-4 flex-col">
+          <p>A cute dog.</p>
+          <button
+            onclick="newDog()"
+            id="new-dog"
+            class="p-2 bg-green-600 hover:bg-green-700 active:opacity-80 transition ease-in-out delay-50 rounded-full px-12"
+          >
+            Click here
+          </button>
+        </div>
+      </section>
     </main>
+    <script>
+      const dogElement = document.getElementById("new-dog");
+
+      const fetchDog = async () => {
+        const response = await fetch("https://dog.ceo/api/breeds/image/random");
+        const { message } = await response.json();
+        return message;
+      };
+
+      const newDog = async () => {
+        const data = await fetchDog();
+        dogElement.src = data;
+      };
+
+      newDog();
+    </script>
   </body>
 </html>
